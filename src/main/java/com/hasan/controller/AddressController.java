@@ -4,10 +4,7 @@ import com.hasan.entity.Address;
 import com.hasan.service.AddressService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,9 +15,8 @@ public class AddressController {
     @Autowired
     private AddressService addressService;
 
-    @GetMapping("/save")
-    public Address save(){
-        Address address = new Address();
+    @PostMapping("/save")
+    public Address save(@RequestBody Address address){
         return addressService.save(address);
     }
 
@@ -30,6 +26,13 @@ public class AddressController {
         Address address = addressService.get(id);
         return ResponseEntity.ok(address);
     }
+    @PostMapping("/update")
+    public ResponseEntity<Address> get(@RequestBody Address address){
+
+        return ResponseEntity.ok(addressService.updateAddress(address));
+    }
+
+
 
     @GetMapping("/findAll")
     public List<Address> findAll(){

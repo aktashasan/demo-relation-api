@@ -24,14 +24,6 @@ public class UserService {
     private Validator validator;
 
     public User save(User user) throws Exception {
-//        Set<ConstraintViolation<Object>> violations = validator.validate(user);
-//        if (!violations.isEmpty()) {
-//            String errors = "";
-//            for (ConstraintViolation<Object> violation : violations) {
-//                errors += violation.getPropertyPath() + "-" + violation.getMessage();
-//            }
-//            throw new Exception(errors);
-//        }
 
         List<Address> addressListToSave = new ArrayList<>();
 
@@ -42,8 +34,7 @@ public class UserService {
                 if (address == null) {
                     addressService.save(item);
                     addressListToSave.add(item);
-                }
-                else if (address.getCity() != null) {
+                } else if (address.getCity() != null) {
                     addressListToSave.add(address);
                 }
             }
@@ -66,6 +57,4 @@ public class UserService {
         return userRepository.findAll();
     }
 
-//    public void save(List<User> userData) {
-//    }
 }
