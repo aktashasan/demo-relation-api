@@ -31,13 +31,12 @@ public class AddressService {
         return addressRepository.findTopById(id);
     }
 
-    public Address updateAddress(Address address) {
-        Address updateAddress = addressRepository.findTopById(address.getId());
-        if (updateAddress != null) {
-            updateAddress.setCity(address.getCity());
-            return addressRepository.save(updateAddress);
-        }
-        return null;
+    public Address updateAddress(Address address, Long id) {
+
+        addressRepository.findById(id);
+
+        return addressRepository.save(address);
+
     }
 
     public List<Address> findAll() {

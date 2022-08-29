@@ -48,7 +48,20 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public User get(String username) {
+    public User getUserById(Long id) {
+        return userRepository.getTopById(id);
+    }
+
+    public boolean deleteById(Long id) {
+
+        userRepository.deleteById(id);
+        if (getUserById(id) == null) {
+            return Boolean.TRUE;
+        }
+        return Boolean.FALSE;
+    }
+
+    public User getTopByUsername(String username) {
 
         return userRepository.getTopByUsername(username);
     }
@@ -57,4 +70,10 @@ public class UserService {
         return userRepository.findAll();
     }
 
+    public User updateUser(User user, Long id) {
+
+        userRepository.getTopById(id);
+        user.setId(id);
+        return userRepository.save(user);
+    }
 }

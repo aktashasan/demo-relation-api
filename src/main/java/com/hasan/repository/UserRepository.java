@@ -10,4 +10,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
 //    User getTopByAddressId(Long id);
 
     User getTopByUsername(String username);
+
+    User getTopById(Long id);
+
+    User deleteUserByUsername(String username);
 }
