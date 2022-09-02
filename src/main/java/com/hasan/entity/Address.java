@@ -1,13 +1,8 @@
 package com.hasan.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
-import javax.transaction.Transactional;
 import java.util.List;
 
 @Entity
@@ -26,8 +21,8 @@ public class Address {
     private String city;
 
 
-    @ManyToMany(cascade = CascadeType.ALL,targetEntity = User.class, mappedBy = "address")
-    @JsonIgnoreProperties("address")
+    @ManyToMany(cascade = CascadeType.ALL,targetEntity = User.class, mappedBy = "addressList")
+    @JsonIgnoreProperties("addressList")
     List<User> userList;
 
 

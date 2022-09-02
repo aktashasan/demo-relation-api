@@ -6,11 +6,9 @@ import com.hasan.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 @Service
 public class UserService {
@@ -27,7 +25,7 @@ public class UserService {
 
         List<Address> addressListToSave = new ArrayList<>();
 
-        List<Address> addressList = user.getAddress();
+        List<Address> addressList = user.getAddressList();
         if (addressList != null && !addressList.isEmpty()) {
             for (Address item : addressList) {
                 Address address = addressService.getTopByCity(item.getCity());
@@ -41,7 +39,7 @@ public class UserService {
         }
 
         if (addressListToSave != null && !addressListToSave.isEmpty()) {
-            user.setAddress(addressListToSave);
+            user.setAddressList(addressListToSave);
         } else {
             throw new Exception("address entity not saved");
         }

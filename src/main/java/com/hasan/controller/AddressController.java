@@ -20,20 +20,20 @@ public class AddressController {
     @Autowired
     private AddressService addressService;
 
-    @Operation(summary = "This is to add  the Address in the database. just use only userService. ")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200",
-                    description = " Address details saved in database",
-                    content = {@Content(mediaType = "application/json")}),
-            @ApiResponse(responseCode = "404",
-                    description = " Page Not Found",
-                    content = @Content)
-    })
-    @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("/save")
-    public Address save(@RequestBody Address address) {
-        return addressService.save(address);
-    }
+//    @Operation(summary = "This is to add  the Address in the database. just use only userService. ")
+//    @ApiResponses(value = {
+//            @ApiResponse(responseCode = "200",
+//                    description = " Address details saved in database",
+//                    content = {@Content(mediaType = "application/json")}),
+//            @ApiResponse(responseCode = "404",
+//                    description = " Page Not Found",
+//                    content = @Content)
+//    })
+//    @ResponseStatus(HttpStatus.CREATED)
+//    @PostMapping("/save")
+//    public Address save(@RequestBody Address address) {
+//        return addressService.save(address);
+//    }
 
     @Operation(summary = "This is to get  the details of particular  Address in the database")
     @ApiResponses(value = {
