@@ -3,7 +3,11 @@ package com.hasan.service;
 import com.hasan.entity.Address;
 import com.hasan.entity.User;
 import com.hasan.repository.UserRepository;
+import com.hasan.security.service.UserDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import javax.validation.Validator;
@@ -11,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class UserService {
+public class UserService implements UserDetailsService {
 
     @Autowired
     private UserRepository userRepository;
@@ -74,4 +78,22 @@ public class UserService {
         user.setId(id);
         return userRepository.save(user);
     }
+
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user = userRepository
+                .findByUsername(username)
+                .orElseThrow(
+                        () ->
+                                new UsernameNotFoundException(
+                                        "User with username - %s, not found" + username));
+        return UserDetailsImpl.build(user);
+    }
+
+
+//    @Override
+//    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+//        com.hasan.entity.User user = userRepository.findByUsername(username)
+//                .orElseThrow(() -> new UsernameNotFoundException("User Not Found with username: " + username));
+//        return UserDetailsImpl.build(user);
+//    }
 }

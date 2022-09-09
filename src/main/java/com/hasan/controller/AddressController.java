@@ -68,7 +68,7 @@ public class AddressController {
                     description = "Page not found",
                     content = @Content)
     })
-    @GetMapping("/findAll")
+    @GetMapping("/get/findAll")
     public List<Address> findAll() {
         return addressService.findAll();
     }
