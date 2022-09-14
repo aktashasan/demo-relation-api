@@ -1,9 +1,8 @@
 package com.hasan;
 
-import com.hasan.controller.UserController;
-import com.hasan.entity.Address;
-import com.hasan.service.AddressService;
-import com.hasan.service.UserService;
+import com.hasan.entity.ERole;
+import com.hasan.entity.Role;
+import com.hasan.service.RoleService;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.info.Info;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,22 +16,32 @@ import javax.annotation.PostConstruct;
 public class DemoRelationApplication {
 
     @Autowired
-    private AddressService addressService;
+    private RoleService roleService;
 
     public static void main(String[] args) {
         SpringApplication.run(DemoRelationApplication.class, args);
     }
 
 
-//	@PostConstruct 												// If you want to run code-first,you should add this annotation.
-//	public void init(){
-//
-//		if(addressService.getTopByCity("kocaeli") == null) {
-//			Address address = new Address();
-//			address.setCity("kocaeli");
-//			addressService.save(address);
-//		}
-//
-//	}
+	@PostConstruct 												// If you want to run code-first,you should add this annotation.
+	public void init(){
+
+		if(roleService.findTopByName(ERole.ROLE_USER) == null) {
+			Role role = new Role();
+			role.setName(ERole.ROLE_USER);
+			roleService.save(role);
+		}
+        if(roleService.findTopByName(ERole.ROLE_MODERATOR) == null) {
+            Role role = new Role();
+            role.setName(ERole.ROLE_MODERATOR);
+            roleService.save(role);
+        }
+        if(roleService.findTopByName(ERole.ROLE_ADMIN) == null) {
+            Role role = new Role();
+            role.setName(ERole.ROLE_ADMIN);
+            roleService.save(role);
+        }
+
+	}
 
 }
