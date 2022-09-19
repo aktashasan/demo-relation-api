@@ -28,7 +28,7 @@ Postgresql'i Docker'da çalıştırın
 API'yi docker'da ayağa kaldırın
 
 ```bash
-  docker run --network demo-app-spring-postgres --name demo-app -p 8080:8080 demo-relation-docker-app
+  docker run --network demo-app-spring-postgres --name demo-app -p 8080:8080 hasanaktas/demo-relation-app
 ```
 
 Tarayıcıda endpointleri görebilmek için swagger linki
