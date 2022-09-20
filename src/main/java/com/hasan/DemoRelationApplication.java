@@ -12,7 +12,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import javax.annotation.PostConstruct;
 
 @SpringBootApplication
-@OpenAPIDefinition(info = @Info(title = "Demo Relation API", version = "3.0.0", description = "Relation Information"))
+@OpenAPIDefinition(info = @Info(title = "Demo Relation API", version = "3.0", description = "Relation Information"))
 public class DemoRelationApplication {
 
     @Autowired

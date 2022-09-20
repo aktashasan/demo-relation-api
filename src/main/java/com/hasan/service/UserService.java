@@ -89,6 +89,14 @@ public class UserService implements UserDetailsService {
         return UserDetailsImpl.build(user);
     }
 
+    public boolean existsByUsername(String username) {
+        return userRepository.existsByUsername(username);
+    }
+
+    public boolean existsByEmail(String email) {
+        return userRepository.existsByEmail(email);
+    }
+
 
 //    @Override
 //    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

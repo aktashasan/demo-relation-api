@@ -13,14 +13,11 @@ import com.hasan.payload.request.LoginRequest;
 import com.hasan.payload.request.SignupRequest;
 import com.hasan.payload.response.JwtResponse;
 import com.hasan.payload.response.MessageResponse;
-import com.hasan.payload.response.UserInfoResponse;
 import com.hasan.repository.RoleRepository;
-import com.hasan.repository.UserRepository;
 import com.hasan.security.jwt.JwtUtils;
 import com.hasan.security.service.UserDetailsImpl;
+import com.hasan.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -40,7 +37,7 @@ public class AuthController {
     AuthenticationManager authenticationManager;
 
     @Autowired
-    UserRepository userRepository;
+    UserService userService;
 
     @Autowired
     RoleRepository roleRepository;
@@ -73,12 +70,12 @@ public class AuthController {
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
-        if (userRepository.existsByUsername(signUpRequest.getUsername())) {
+    public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) throws Exception {
+        if (userService.existsByUsername(signUpRequest.getUsername())) {
             return ResponseEntity.badRequest().body(new MessageResponse("Error: Username is already taken!"));
         }
 
-        if (userRepository.existsByEmail(signUpRequest.getEmail())) {
+        if (userService.existsByEmail(signUpRequest.getEmail())) {
             return ResponseEntity.badRequest().body(new MessageResponse("Error: Email is already in use!"));
         }
 
@@ -116,9 +113,10 @@ public class AuthController {
                 }
             });
         }
+
         user.setRoles(roles);
         user.setAddressList(addresses);
-        userRepository.save(user);
+        userService.save(user);
 
         return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
     }

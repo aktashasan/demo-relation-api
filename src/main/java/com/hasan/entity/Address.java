@@ -21,7 +21,7 @@ public class Address {
     private String city;
 
 
-    @ManyToMany(cascade = CascadeType.ALL,targetEntity = User.class, mappedBy = "addressList")
+    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER, targetEntity = User.class, mappedBy = "addressList")
     @JsonIgnoreProperties("addressList")
     List<User> userList;
 
