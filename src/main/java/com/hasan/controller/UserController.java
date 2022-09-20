@@ -37,16 +37,8 @@ public class UserController {
         return userService.getTopByUsername(username);
     }
 
-//    @Operation(summary = "This is to delete of particular  User in the database")
-//    @DeleteMapping("/delete/{id}")
-//    public ResponseEntity<Boolean> deleteById(@PathVariable long id)
-//    {
-//
-//        return ResponseEntity.ok(userService.deleteById(id));
-//    }
-
     @Operation(summary = "This is to delete of particular  User in the database")
-    @DeleteMapping("/delete/{username}")
+    @DeleteMapping("/delete/{id}")
     @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
     public ResponseEntity<Boolean> deleteById(@PathVariable Long id)
     {
