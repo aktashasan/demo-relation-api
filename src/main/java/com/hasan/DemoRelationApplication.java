@@ -8,12 +8,13 @@ import io.swagger.v3.oas.annotations.info.Info;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
 import javax.annotation.PostConstruct;
 
 @SpringBootApplication
 @OpenAPIDefinition(info = @Info(title = "Demo Relation API", version = "3.0", description = "Relation Information"))
-public class DemoRelationApplication {
+public class DemoRelationApplication extends SpringBootServletInitializer {
 
     @Autowired
     private RoleService roleService;
