@@ -102,6 +102,7 @@
 				<configuration>
 					<server>maven-tomcat-hasan</server>
 					<url>http://localhost:8079/manager/text</url>
+					<warFile>target/${project.build.finalName}.war.original</warFile>
 					<path>/${project.build.finalName}</path>
 				</configuration>
 			</plugin>
