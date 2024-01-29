@@ -1,4 +1,4 @@
 FROM openjdk:17-jdk-slim
-COPY target/demo-relation.jar demo-relation.jar
-ENTRYPOINT ["java","-jar","/demo-relation.jar"]
+COPY target/demo-relation.war demo-relation.war
+ENTRYPOINT ["java","-jar","/demo-relation.war"]
 EXPOSE 8080
