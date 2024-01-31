@@ -1,4 +1,3 @@
-
 # demo-relation-app
 
 İlişkisel veritabanı olan Postgresql ile çalışan CRUD işlemleri yapan 6 tablolu  bir API... 
